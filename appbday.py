@@ -1,6 +1,7 @@
 from tkinter import *
 from datetime import datetime
 from tkinter import messagebox
+import tkinter
 
 class Bday:
     cor_fundo = '#13633B'
@@ -34,11 +35,13 @@ class Bday:
         txt4.place(x=186, y=270)
         self.entr1 = Entry(root, bg='white', fg='black', font='Arial 22 bold', border=0)
         self.entr1.place(x=186, y=300, width=255, height= 42)
+        '''self.entr1.insert(tkinter.END, '2')'''#Insere um Texto no Entry
 
         txt5 = Label(root, text='Mês:',bg=self.cor_fundo,fg='black',font='Arial 18 bold')
         txt5.place(x=186, y=350)
         self.entr2 = Entry(root, bg='white', fg='black', font='Arial 22 bold', border=0)
         self.entr2.place(x=186, y=380, width=255, height= 42)
+        '''self.entr2.insert(tkinter.END, '12')'''#Insere um Texto no Entry
 
         btn1 = Button(root, text='Ver!', bg=self.cor_botao, fg='black', font='Arial 22 bold', command=self.verbday, border=0)
         btn1.place(x=230, y=500, width=171, height=45)
@@ -53,8 +56,8 @@ class Bday:
 
 
             if mes >= datetime.now().month:
-                data = datetime.strptime(f'{dia}/{mes}/{ano}','%d/%m/%Y')
-                if dia <= datetime.now().day:
+                data = datetime.strptime(f'{dia + 1}/{mes}/{ano}','%d/%m/%Y')
+                if dia <= datetime.now().day and mes == datetime.now().month:
                     data = datetime.strptime(f'{dia}/{mes}/{ano + 1}','%d/%m/%Y')
             elif mes < datetime.now().month:
                 data = datetime.strptime(f'{dia}/{mes}/{ano + 1}','%d/%m/%Y')
